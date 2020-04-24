@@ -6,7 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 public class MoodAnalysisFactory {
     public static MoodAnalyser createMoodAnalyser(String mood) {
         try {
-            Class<?> moodAnalyserClass = Class.forName("com.bl.demo.moodAnalyser");
+            Class<?> moodAnalyserClass = Class.forName("com.bl.demo.MoodAnalyser");
             Constructor<?> moodConstructor = moodAnalyserClass.getConstructor(String.class);
             Object moodObj = moodConstructor.newInstance(mood);
             return (MoodAnalyser) moodObj;

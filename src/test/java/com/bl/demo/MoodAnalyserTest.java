@@ -50,4 +50,10 @@ public class MoodAnalyserTest {
             Assert.assertEquals("Empty Parameter Is Passed",e.getMessage());
         }
     }
+
+    @Test
+    public void givenMoodAnalyseClass_WhenProper_ShouldReturnObject() throws MoodAnalyserException {
+        MoodAnalyser moodAnalyser = MoodAnalysisFactory.createMoodAnalyser("I am In Happy Mood");
+        Assert.assertEquals(moodAnalyser.analyseMood(), MoodAnalyser.analyseMood("I am In Happy Mood"));
+    }
 }

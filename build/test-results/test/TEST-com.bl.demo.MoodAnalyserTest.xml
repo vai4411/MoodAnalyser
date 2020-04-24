@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bl.demo.MoodAnalyserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-04-24T15:06:17" hostname="DESKTOP-QIO4ADF" time="0.002">
+<testsuite name="com.bl.demo.MoodAnalyserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-04-24T15:17:32" hostname="DESKTOP-QIO4ADF" time="0.003">
   <properties/>
-  <testcase name="givenMood_WhenEmptyMessage_ShouldReturnReturnHappy" classname="com.bl.demo.MoodAnalyserTest" time="0.002"/>
+  <testcase name="givenMoodAnalyseClass_WhenProper_ShouldReturnObject" classname="com.bl.demo.MoodAnalyserTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
