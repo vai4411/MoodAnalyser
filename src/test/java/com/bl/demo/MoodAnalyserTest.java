@@ -1,5 +1,6 @@
 package com.bl.demo;
 
+import com.bl.demo.exception.MoodAnalyserException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -7,32 +8,36 @@ public class MoodAnalyserTest {
     private MoodAnalyser analyser;
 
     @Test
-    public void givenMood_WhenSadMessage_ShouldReturnSad() {
+    public void givenMood_WhenSadMessage_ShouldReturnSad() throws MoodAnalyserException {
         analyser = new MoodAnalyser();
         Assert.assertEquals("Sad",analyser.analyseMood("I Am In Sad Mood"));
     }
 
     @Test
-    public void givenMood_WhenAnyMessage_ShouldReturnHappy() {
+    public void givenMood_WhenAnyMessage_ShouldReturnHappy() throws MoodAnalyserException {
         analyser = new MoodAnalyser();
         Assert.assertEquals("Happy",analyser.analyseMood("I Am In Any Mood"));
     }
 
     @Test
-    public void givenMood_WhenSadMessageConstructor_ShouldReturnSad() {
+    public void givenMood_WhenSadMessageConstructor_ShouldReturnSad() throws MoodAnalyserException {
         analyser = new MoodAnalyser("I Am In Sad Mood");
         Assert.assertEquals("Sad",analyser.analyseMood());
     }
 
     @Test
-    public void givenMood_WhenAnyMessageConstructor_ShouldReturnHappy() {
+    public void givenMood_WhenAnyMessageConstructor_ShouldReturnHappy() throws MoodAnalyserException {
         analyser = new MoodAnalyser("I Am In Any Mood");
         Assert.assertEquals("Happy",analyser.analyseMood());
     }
 
     @Test
     public void givenMood_WhenNullMessage_ShouldReturnReturnHappy() {
-        analyser = new MoodAnalyser(null);
-        Assert.assertEquals("Happy",analyser.analyseMood());
+        try {
+            analyser = new MoodAnalyser();
+            analyser.analyseMood();
+        } catch (MoodAnalyserException e) {
+            Assert.assertEquals("Null Parameter Is Passed",e.getMessage());
+        }
     }
 }

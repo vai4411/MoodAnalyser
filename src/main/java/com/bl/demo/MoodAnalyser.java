@@ -1,5 +1,8 @@
 package com.bl.demo;
 
+import com.bl.demo.exception.ExceptionClass;
+import com.bl.demo.exception.MoodAnalyserException;
+
 public class MoodAnalyser {
     private String mood;
 
@@ -10,18 +13,20 @@ public class MoodAnalyser {
         this.mood = mood;
     }
 
-    public static String analyseMood(String mood) {
+    public static String analyseMood(String mood) throws MoodAnalyserException {
         try {
             if (mood.contains("Sad"))
                 return "Sad";
+            else if (mood.equals(""))
+                throw new MoodAnalyserException(ExceptionClass.EmptyException.getException());
             else
                 return "Happy";
         }catch (NullPointerException e) {
-            return "Happy";
+            throw new MoodAnalyserException(ExceptionClass.NullException.getException());
         }
     }
 
-    public String analyseMood() {
+    public String analyseMood() throws MoodAnalyserException {
         return analyseMood(this.mood);
     }
 }
