@@ -28,4 +28,15 @@ hs_err_pid*
 gradle
 *.bat
 gradlew
+External
 
+build/generated/
+build/tmp/
+src/main/resources/
+src/test/resources/
+*.html
+*.css
+*.js
+*.xml
+*.bin
+*.idx
