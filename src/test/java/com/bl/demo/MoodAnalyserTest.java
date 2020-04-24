@@ -89,4 +89,13 @@ public class MoodAnalyserTest {
             Assert.assertEquals("No Such Class Error", e.getMessage());
         }
     }
+
+    @Test
+    public void givenMoodAnalyseConstructorMethod_WhenImproper_ShouldReturnException() throws MoodAnalyserException {
+        try {
+            MoodAnalyser moodAnalyser = MoodAnalysisFactory.createMoodAnalyser(Integer.class, "com.bl.demo.MoodAnalyser");
+        }catch (MoodAnalyserException e) {
+            Assert.assertEquals("No Such Method Error", e.getMessage());
+        }
+    }
 }
