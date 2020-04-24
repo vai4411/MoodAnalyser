@@ -74,4 +74,6 @@ public class MoodAnalyserTest {
             Assert.assertEquals("No Such Method Error", e.getMessage());
         }
     }
+
+
 }
