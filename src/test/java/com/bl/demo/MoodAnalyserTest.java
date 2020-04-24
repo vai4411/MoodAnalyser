@@ -34,10 +34,20 @@ public class MoodAnalyserTest {
     @Test
     public void givenMood_WhenNullMessage_ShouldReturnReturnHappy() {
         try {
-            analyser = new MoodAnalyser();
+            analyser = new MoodAnalyser(null);
             analyser.analyseMood();
         } catch (MoodAnalyserException e) {
             Assert.assertEquals("Null Parameter Is Passed",e.getMessage());
+        }
+    }
+
+    @Test
+    public void givenMood_WhenEmptyMessage_ShouldReturnReturnHappy() {
+        try {
+            analyser = new MoodAnalyser("");
+            analyser.analyseMood();
+        } catch (MoodAnalyserException e) {
+            Assert.assertEquals("Empty Parameter Is Passed",e.getMessage());
         }
     }
 }
