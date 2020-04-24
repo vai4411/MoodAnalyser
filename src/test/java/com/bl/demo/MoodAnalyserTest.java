@@ -8,13 +8,13 @@ public class MoodAnalyserTest {
 
     @Test
     public void givenMood_WhenSadMessage_ShouldReturnSad() {
-        analyser = new MoodAnalyser();
+        analyser = new MoodAnalyser(mood);
         Assert.assertEquals("Sad",analyser.analyseMood("I Am In Sad Mood"));
     }
 
     @Test
     public void givenMood_WhenAnyMessage_ShouldReturnHappy() {
-        analyser = new MoodAnalyser();
+        analyser = new MoodAnalyser(mood);
         Assert.assertEquals("Happy",analyser.analyseMood("I Am In Any Mood"));
     }
 }
