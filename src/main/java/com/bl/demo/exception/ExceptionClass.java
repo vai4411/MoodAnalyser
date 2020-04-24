@@ -3,7 +3,8 @@ package com.bl.demo.exception;
 public enum  ExceptionClass {
     NullException("Null Parameter Is Passed"),
     EmptyException( "Empty Parameter Is Passed"),
-    ClassException("No Such Class Error");
+    ClassException("No Such Class Error"),
+    MethodException("No Such Method Error");
 
     private final String exception;
 

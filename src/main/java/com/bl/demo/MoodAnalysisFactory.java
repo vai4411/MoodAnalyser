@@ -7,10 +7,10 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalysisFactory {
-    public static MoodAnalyser createMoodAnalyser(String path, String mood) throws MoodAnalyserException {
+    public static MoodAnalyser createMoodAnalyser(Class className, String path, String mood) throws MoodAnalyserException {
         try {
             Class<?> moodAnalyserClass = Class.forName(path);
-            Constructor<?> moodConstructor = moodAnalyserClass.getConstructor(String.class);
+            Constructor<?> moodConstructor = moodAnalyserClass.getConstructor(className);
             Object moodObj = moodConstructor.newInstance(mood);
             return (MoodAnalyser) moodObj;
         } catch (ClassNotFoundException e) {
@@ -23,7 +23,7 @@ public class MoodAnalysisFactory {
             e.printStackTrace();
         }
         catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            throw new MoodAnalyserException(ExceptionClass.MethodException.getException());
         }
         return null;
     }
