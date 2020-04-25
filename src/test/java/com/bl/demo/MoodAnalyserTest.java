@@ -100,4 +100,10 @@ public class MoodAnalyserTest {
             Assert.assertEquals("No Such Method Error", e.getMessage());
         }
     }
+
+    @Test
+    public void giveMoodReflection_WhenHappyMessage_ShouldReturnHappy() throws NoSuchMethodException, MoodAnalyserException, IllegalAccessException, InvocationTargetException {
+        MoodAnalysisFactory s = new MoodAnalysisFactory();
+        Assert.assertEquals("Happy",s.Invoke(String.class,"com.bl.demo.MoodAnalyser","I Am In Happy Mood"));
+    }
 }

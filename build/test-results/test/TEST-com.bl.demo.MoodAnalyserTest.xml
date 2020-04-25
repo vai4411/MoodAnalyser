@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bl.demo.MoodAnalyserTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2020-04-25T08:07:05" hostname="DESKTOP-QIO4ADF" time="0.01">
+<testsuite name="com.bl.demo.MoodAnalyserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-04-25T08:14:53" hostname="DESKTOP-QIO4ADF" time="0.003">
   <properties/>
-  <testcase name="givenMood_WhenAnyMessage_ShouldReturnHappy" classname="com.bl.demo.MoodAnalyserTest" time="0.002"/>
-  <testcase name="givenMoodAnalyseClass_WhenProper_ShouldReturnObject" classname="com.bl.demo.MoodAnalyserTest" time="0.001"/>
-  <testcase name="givenMoodAnalyseMethod_WhenImproper_ShouldReturnException" classname="com.bl.demo.MoodAnalyserTest" time="0.001"/>
-  <testcase name="givenMoodAnalyseClassConstructor_WhenImproper_ShouldThrowException" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
-  <testcase name="givenMood_WhenSadMessage_ShouldReturnSad" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
-  <testcase name="givenMoodAnalyseConstructorMethod_WhenImproper_ShouldReturnException" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
-  <testcase name="givenMood_WhenEmptyMessage_ShouldReturnReturnHappy" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
-  <testcase name="givenMoodAnalyseClass_WhenImproper_ShouldThrowException" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
-  <testcase name="test1" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
-  <testcase name="test2" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
-  <testcase name="givenMoodAnalyseClassConstructor_WhenProper_ShouldReturnObject" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
-  <testcase name="givenMood_WhenAnyMessageConstructor_ShouldReturnHappy" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
-  <testcase name="givenMood_WhenSadMessageConstructor_ShouldReturnSad" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
-  <testcase name="givenMood_WhenNullMessage_ShouldReturnReturnHappy" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
+  <testcase name="giveMoodReflection_WhenHappyMessage_ShouldReturnHappy" classname="com.bl.demo.MoodAnalyserTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
