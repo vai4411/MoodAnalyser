@@ -4,7 +4,8 @@ public enum  ExceptionClass {
     NullException("Null Parameter Is Passed"),
     EmptyException( "Empty Parameter Is Passed"),
     ClassException("No Such Class Error"),
-    MethodException("No Such Method Error");
+    MethodException("No Such Method Error"),
+    FieldException("No Such Field Error");
 
     private final String exception;
 

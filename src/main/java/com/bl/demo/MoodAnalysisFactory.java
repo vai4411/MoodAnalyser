@@ -3,6 +3,7 @@ package com.bl.demo;
 import com.bl.demo.exception.ExceptionClass;
 import com.bl.demo.exception.MoodAnalyserException;
 
+import javax.swing.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -12,6 +13,7 @@ public class MoodAnalysisFactory {
     private Class className;
     private String path;
     private String mood;
+
     public static MoodAnalyser createMoodAnalyser(Class className, String path, String mood) throws MoodAnalyserException {
         try {
             Class<?> moodAnalyserClass = Class.forName(path);
@@ -26,38 +28,43 @@ public class MoodAnalysisFactory {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
-        }
-        catch (NoSuchMethodException e) {
+        } catch (NoSuchMethodException e) {
             throw new MoodAnalyserException(ExceptionClass.MethodException.getException());
         }
         return null;
     }
 
     public static MoodAnalyser createMoodAnalyser(Class className, String path) throws MoodAnalyserException {
-        return createMoodAnalyser(className,path,null);
+        return createMoodAnalyser(className, path, null);
     }
 
-    public static String Invoke(Class className,String mood) throws MoodAnalyserException {
+    public static String Invoke(Class className, String mood) throws MoodAnalyserException {
         try {
-        Method method = MoodAnalyser.class.getDeclaredMethod("analyseMood",className);
-        Object value = method.invoke(new MoodAnalyser(),mood);
-        return (String) value;
+            Method method = MoodAnalyser.class.getDeclaredMethod("analyseMood", className);
+            Object value = method.invoke(new MoodAnalyser(), mood);
+            return (String) value;
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
-        }
-        catch (NoSuchMethodException e) {
+        } catch (NoSuchMethodException e) {
             throw new MoodAnalyserException(ExceptionClass.MethodException.getException());
         }
         return null;
     }
 
-  public Object reflector(String mood) throws NoSuchFieldException, IllegalAccessException, InstantiationException, MoodAnalyserException {
-        MoodAnalyser obj = new MoodAnalyser();
-        Field field = MoodAnalyser.class.getDeclaredField("mood");
-        field.setAccessible(true);
-        field.set(obj, mood);
-        return obj.analyseMood();
-  }
+    public Object reflector(String mood) throws MoodAnalyserException, NoSuchFieldException {
+        try {
+            MoodAnalyser obj = new MoodAnalyser();
+            Field field = MoodAnalyser.class.getDeclaredField("mood");
+            field.setAccessible(true);
+            field.set(obj, mood);
+            return obj.analyseMood();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            throw new MoodAnalyserException(ExceptionClass.FieldException.getException());
+        }
+        return null;
+    }
 }

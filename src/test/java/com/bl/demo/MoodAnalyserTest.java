@@ -1,9 +1,11 @@
 package com.bl.demo;
 
+import com.bl.demo.exception.ExceptionClass;
 import com.bl.demo.exception.MoodAnalyserException;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyserTest {
@@ -111,7 +113,7 @@ public class MoodAnalyserTest {
     public void giveMoodReflection_WhenImproperMethod_ShouldThrowException() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         try {
             MoodAnalysisFactory s = new MoodAnalysisFactory();
-            Assert.assertEquals("Happy",s.Invoke(Integer.class,"I Am In Happy Mood"));
+            s.Invoke(Integer.class,"I Am In Happy Mood");
         }catch (MoodAnalyserException e) {
             Assert.assertEquals("No Such Method Error", e.getMessage());
         }
@@ -121,5 +123,15 @@ public class MoodAnalyserTest {
     public void giveMoodDynamically_WhenHappyMessage_ShouldReturnHappy() throws ClassNotFoundException, MoodAnalyserException, IllegalAccessException, NoSuchFieldException, NoSuchMethodException, InstantiationException {
         MoodAnalysisFactory s = new MoodAnalysisFactory();
         Assert.assertEquals("Happy",s.reflector("I am in Happy Mood"));
+    }
+
+    @Test
+    public void giveMoodDynamically_WhenImproperMethod_ShouldThrowException() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, NoSuchFieldException, InstantiationException, MoodAnalyserException {
+        try {
+            MoodAnalysisFactory s = new MoodAnalysisFactory();
+            s.reflector("I Am In Happy Mood");
+        }catch (MoodAnalyserException e) {
+            Assert.assertEquals("No Such Field Error", e.getMessage());
+        }
     }
 }
