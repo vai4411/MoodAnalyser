@@ -116,4 +116,10 @@ public class MoodAnalyserTest {
             Assert.assertEquals("No Such Method Error", e.getMessage());
         }
     }
+
+    @Test
+    public void giveMoodDynamically_WhenHappyMessage_ShouldReturnHappy() throws ClassNotFoundException, MoodAnalyserException, IllegalAccessException, NoSuchFieldException, NoSuchMethodException, InstantiationException {
+        MoodAnalysisFactory s = new MoodAnalysisFactory();
+        Assert.assertEquals("Happy",s.reflector("I am in Happy Mood"));
+    }
 }
