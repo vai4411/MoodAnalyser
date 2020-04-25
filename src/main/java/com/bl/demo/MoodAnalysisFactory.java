@@ -5,6 +5,7 @@ import com.bl.demo.exception.MoodAnalyserException;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class MoodAnalysisFactory {
     private Class className;
@@ -33,5 +34,11 @@ public class MoodAnalysisFactory {
 
     public static MoodAnalyser createMoodAnalyser(Class className, String path) throws MoodAnalyserException {
         return createMoodAnalyser(className,path,null);
+    }
+
+    public static String Invoke(Class className, String path, String mood) throws MoodAnalyserException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Method method = MoodAnalyser.class.getDeclaredMethod("analyseMood",String.class);
+        Object value = method.invoke(new MoodAnalyser(),mood);
+        return (String) value;
     }
 }

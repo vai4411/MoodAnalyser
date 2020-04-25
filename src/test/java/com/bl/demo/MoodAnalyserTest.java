@@ -4,6 +4,8 @@ import com.bl.demo.exception.MoodAnalyserException;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class MoodAnalyserTest {
     private MoodAnalyser analyser;
 
