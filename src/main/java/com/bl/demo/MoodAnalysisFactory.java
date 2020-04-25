@@ -3,7 +3,6 @@ package com.bl.demo;
 import com.bl.demo.exception.ExceptionClass;
 import com.bl.demo.exception.MoodAnalyserException;
 
-import javax.swing.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;

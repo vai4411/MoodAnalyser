@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bl.demo.MoodAnalyserTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2020-04-25T12:10:07" hostname="DESKTOP-QIO4ADF" time="0.024">
+<testsuite name="com.bl.demo.MoodAnalyserTest" tests="17" skipped="0" failures="0" errors="0" timestamp="2020-04-25T12:19:18" hostname="DESKTOP-QIO4ADF" time="0.014">
   <properties/>
   <testcase name="givenMood_WhenAnyMessage_ShouldReturnHappy" classname="com.bl.demo.MoodAnalyserTest" time="0.002"/>
-  <testcase name="giveMoodReflection_WhenHappyMessage_ShouldReturnHappy" classname="com.bl.demo.MoodAnalyserTest" time="0.002"/>
-  <testcase name="givenMoodAnalyseClass_WhenProper_ShouldReturnObject" classname="com.bl.demo.MoodAnalyserTest" time="0.001"/>
+  <testcase name="giveMoodReflection_WhenHappyMessage_ShouldReturnHappy" classname="com.bl.demo.MoodAnalyserTest" time="0.001"/>
+  <testcase name="givenMoodAnalyseClass_WhenProper_ShouldReturnObject" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
   <testcase name="givenMoodAnalyseMethod_WhenImproper_ShouldReturnException" classname="com.bl.demo.MoodAnalyserTest" time="0.002"/>
   <testcase name="givenMoodAnalyseClassConstructor_WhenImproper_ShouldThrowException" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
   <testcase name="givenMood_WhenSadMessage_ShouldReturnSad" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
-  <testcase name="givenMoodAnalyseConstructorMethod_WhenImproper_ShouldReturnException" classname="com.bl.demo.MoodAnalyserTest" time="0.001"/>
+  <testcase name="givenMoodAnalyseConstructorMethod_WhenImproper_ShouldReturnException" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
   <testcase name="givenMood_WhenEmptyMessage_ShouldReturnReturnHappy" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
   <testcase name="giveMoodReflection_WhenImproperMethod_ShouldThrowException" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
-  <testcase name="giveMoodDynamically_WhenImproperMethod_ShouldThrowException" classname="com.bl.demo.MoodAnalyserTest" time="0.001"/>
-  <testcase name="givenMoodAnalyseClass_WhenImproper_ShouldThrowException" classname="com.bl.demo.MoodAnalyserTest" time="0.001"/>
+  <testcase name="giveMoodDynamically_WhenImproperMethod_ShouldThrowException" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
+  <testcase name="givenMoodAnalyseClass_WhenImproper_ShouldThrowException" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
   <testcase name="givenMoodAnalyseClassConstructor_WhenProper_ShouldReturnObject" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
   <testcase name="giveMoodDynamically_WhenHappyMessage_ShouldReturnHappy" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
-  <testcase name="givenMood_WhenAnyMessageConstructor_ShouldReturnHappy" classname="com.bl.demo.MoodAnalyserTest" time="0.001"/>
+  <testcase name="giveMoodDynamically_WhenMessageNull_ShouldThrowException" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
+  <testcase name="givenMood_WhenAnyMessageConstructor_ShouldReturnHappy" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
   <testcase name="givenMood_WhenSadMessageConstructor_ShouldReturnSad" classname="com.bl.demo.MoodAnalyserTest" time="0.001"/>
-  <testcase name="givenMood_WhenNullMessage_ShouldReturnReturnHappy" classname="com.bl.demo.MoodAnalyserTest" time="0.002"/>
+  <testcase name="givenMood_WhenNullMessage_ShouldReturnReturnHappy" classname="com.bl.demo.MoodAnalyserTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

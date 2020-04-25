@@ -1,11 +1,9 @@
 package com.bl.demo;
 
-import com.bl.demo.exception.ExceptionClass;
 import com.bl.demo.exception.MoodAnalyserException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyserTest {
@@ -123,6 +121,16 @@ public class MoodAnalyserTest {
     public void giveMoodDynamically_WhenHappyMessage_ShouldReturnHappy() throws ClassNotFoundException, MoodAnalyserException, IllegalAccessException, NoSuchFieldException, NoSuchMethodException, InstantiationException {
         MoodAnalysisFactory s = new MoodAnalysisFactory();
         Assert.assertEquals("Happy",s.reflector("I am in Happy Mood"));
+    }
+
+    @Test
+    public void giveMoodDynamically_WhenMessageNull_ShouldThrowException() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, NoSuchFieldException, InstantiationException, MoodAnalyserException {
+        try {
+            MoodAnalysisFactory s = new MoodAnalysisFactory();
+            s.reflector(null);
+        }catch (MoodAnalyserException e) {
+            Assert.assertEquals("Null Parameter Is Passed", e.getMessage());
+        }
     }
 
     @Test
