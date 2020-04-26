@@ -4,33 +4,47 @@ import com.bl.demo.exception.MoodAnalyserException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.lang.reflect.InvocationTargetException;
-
 public class MoodAnalyserTest {
     private MoodAnalyser analyser;
 
     @Test
-    public void givenMood_WhenSadMessage_ShouldReturnSad() throws MoodAnalyserException {
+    public void givenMood_WhenSadMessage_ShouldReturnSad() {
         analyser = new MoodAnalyser();
-        Assert.assertEquals("Sad",analyser.analyseMood("I Am In Sad Mood"));
+        try {
+            Assert.assertEquals("Sad",analyser.analyseMood(Constant.Sad.getMessage()));
+        } catch (MoodAnalyserException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
-    public void givenMood_WhenAnyMessage_ShouldReturnHappy() throws MoodAnalyserException {
+    public void givenMood_WhenAnyMessage_ShouldReturnHappy() {
         analyser = new MoodAnalyser();
-        Assert.assertEquals("Happy",analyser.analyseMood("I Am In Any Mood"));
+        try {
+            Assert.assertEquals("Happy",analyser.analyseMood(Constant.Any.getMessage()));
+        } catch (MoodAnalyserException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
-    public void givenMood_WhenSadMessageConstructor_ShouldReturnSad() throws MoodAnalyserException {
-        analyser = new MoodAnalyser("I Am In Sad Mood");
-        Assert.assertEquals("Sad",analyser.analyseMood());
+    public void givenMood_WhenSadMessageConstructor_ShouldReturnSad() {
+        analyser = new MoodAnalyser(Constant.Sad.getMessage());
+        try {
+            Assert.assertEquals("Sad",analyser.analyseMood());
+        } catch (MoodAnalyserException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
-    public void givenMood_WhenAnyMessageConstructor_ShouldReturnHappy() throws MoodAnalyserException {
-        analyser = new MoodAnalyser("I Am In Any Mood");
-        Assert.assertEquals("Happy",analyser.analyseMood());
+    public void givenMood_WhenAnyMessageConstructor_ShouldReturnHappy() {
+        analyser = new MoodAnalyser(Constant.Any.getMessage());
+        try {
+            Assert.assertEquals("Happy",analyser.analyseMood());
+        } catch (MoodAnalyserException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -39,7 +53,7 @@ public class MoodAnalyserTest {
             analyser = new MoodAnalyser(null);
             analyser.analyseMood();
         } catch (MoodAnalyserException e) {
-            Assert.assertEquals("Null Parameter Is Passed",e.getMessage());
+            Assert.assertEquals(Constant.Null.getMessage(),e.getMessage());
         }
     }
 
@@ -49,97 +63,102 @@ public class MoodAnalyserTest {
             analyser = new MoodAnalyser("");
             analyser.analyseMood();
         } catch (MoodAnalyserException e) {
-            Assert.assertEquals("Empty Parameter Is Passed",e.getMessage());
+            Assert.assertEquals(Constant.Empty.getMessage(),e.getMessage());
         }
     }
 
     @Test
-    public void givenMoodAnalyseClass_WhenProper_ShouldReturnObject() throws MoodAnalyserException {
-        MoodAnalyser moodAnalyser = MoodAnalysisFactory.createMoodAnalyser(String.class,"com.bl.demo.MoodAnalyser","I am In Happy Mood");
-        Assert.assertEquals(moodAnalyser.analyseMood(), MoodAnalyser.analyseMood("I am In Happy Mood"));
-    }
-
-    @Test
-    public void givenMoodAnalyseClass_WhenImproper_ShouldThrowException() throws MoodAnalyserException {
+    public void givenMoodAnalyseClass_WhenProper_ShouldReturnObject() {
+        MoodAnalyser moodAnalyser = null;
         try {
-            MoodAnalyser moodAnalyser = MoodAnalysisFactory.createMoodAnalyser(String.class,"", "I am In Happy Mood");
-        }catch (MoodAnalyserException e) {
-            Assert.assertEquals("No Such Class Error", e.getMessage());
+            moodAnalyser = MoodAnalysisFactory.createMoodAnalyser(String.class,"com.bl.demo.MoodAnalyser",Constant.Happy.getMessage());
+            Assert.assertEquals(moodAnalyser.analyseMood(), MoodAnalyser.analyseMood(Constant.Happy.getMessage()));
+        } catch (MoodAnalyserException e) {
+            e.printStackTrace();
         }
     }
 
     @Test
-    public void givenMoodAnalyseMethod_WhenImproper_ShouldReturnException() throws MoodAnalyserException {
+    public void givenMoodAnalyseClass_WhenImproper_ShouldThrowException() {
         try {
-            MoodAnalyser moodAnalyser = MoodAnalysisFactory.createMoodAnalyser(Integer.class, "com.bl.demo.MoodAnalyser", "I am In Happy Mood");
+            MoodAnalyser moodAnalyser = MoodAnalysisFactory.createMoodAnalyser(String.class,"", Constant.Happy.getMessage());
         }catch (MoodAnalyserException e) {
-            Assert.assertEquals("No Such Method Error", e.getMessage());
+            Assert.assertEquals(Constant.ClassNotFound.getMessage(), e.getMessage());
+        }
+    }
+
+    @Test
+    public void givenMoodAnalyseMethod_WhenImproper_ShouldReturnException() {
+        try {
+            MoodAnalyser moodAnalyser = MoodAnalysisFactory.createMoodAnalyser(Integer.class, "com.bl.demo.MoodAnalyser", Constant.Happy.getMessage());
+        }catch (MoodAnalyserException e) {
+            Assert.assertEquals(Constant.MethodNotFound.getMessage(), e.getMessage());
         }
     }
 
     @Test
     public void givenMoodAnalyseClassConstructor_WhenProper_ShouldReturnObject() throws MoodAnalyserException {
-        MoodAnalyser moodAnalyser = MoodAnalysisFactory.createMoodAnalyser(String.class,"com.bl.demo.MoodAnalyser");
-        Assert.assertEquals(moodAnalyser.analyseMood("I am In Happy Mood"), MoodAnalyser.analyseMood("I am In Happy Mood"));
+        MoodAnalyser moodAnalyser = MoodAnalysisFactory.createMoodAnalyser("com.bl.demo.MoodAnalyser");
+        Assert.assertEquals(moodAnalyser.analyseMood(Constant.Happy.getMessage()), MoodAnalyser.analyseMood(Constant.Happy.getMessage()));
     }
 
     @Test
-    public void givenMoodAnalyseClassConstructor_WhenImproper_ShouldThrowException() throws MoodAnalyserException {
+    public void givenMoodAnalyseClassConstructor_WhenImproper_ShouldThrowException() {
         try {
-            MoodAnalyser moodAnalyser = MoodAnalysisFactory.createMoodAnalyser(String.class,"");
+            MoodAnalyser moodAnalyser = MoodAnalysisFactory.createMoodAnalyser("");
         }catch (MoodAnalyserException e) {
-            Assert.assertEquals("No Such Class Error", e.getMessage());
+            Assert.assertEquals(Constant.ClassNotFound.getMessage(), e.getMessage());
         }
     }
 
     @Test
-    public void givenMoodAnalyseConstructorMethod_WhenImproper_ShouldReturnException() throws MoodAnalyserException {
+    public void givenMoodAnalyseConstructorMethod_WhenImproper_ShouldReturnException() {
         try {
-            MoodAnalyser moodAnalyser = MoodAnalysisFactory.createMoodAnalyser(Integer.class, "com.bl.demo.MoodAnalyser");
+            MoodAnalyser moodAnalyser = MoodAnalysisFactory.createMoodAnalyser("com.bl.demo.MoodAnalyser");
         }catch (MoodAnalyserException e) {
-            Assert.assertEquals("No Such Method Error", e.getMessage());
+            Assert.assertEquals(Constant.MethodNotFound.getMessage(), e.getMessage());
         }
     }
 
     @Test
-    public void giveMoodReflection_WhenHappyMessage_ShouldReturnHappy() throws NoSuchMethodException, MoodAnalyserException, IllegalAccessException, InvocationTargetException {
+    public void giveMoodReflection_WhenHappyMessage_ShouldReturnHappy() throws MoodAnalyserException {
         MoodAnalysisFactory s = new MoodAnalysisFactory();
-        Assert.assertEquals("Happy",s.Invoke(String.class,"I Am In Happy Mood"));
+        Assert.assertEquals("Happy",s.Invoke(String.class,Constant.Happy.getMessage()));
     }
 
     @Test
-    public void giveMoodReflection_WhenImproperMethod_ShouldThrowException() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    public void giveMoodReflection_WhenImproperMethod_ShouldThrowException() {
         try {
             MoodAnalysisFactory s = new MoodAnalysisFactory();
-            s.Invoke(Integer.class,"I Am In Happy Mood");
+            s.Invoke(Integer.class,Constant.Happy.getMessage());
         }catch (MoodAnalyserException e) {
-            Assert.assertEquals("No Such Method Error", e.getMessage());
+            Assert.assertEquals(Constant.MethodNotFound.getMessage(), e.getMessage());
         }
     }
 
     @Test
-    public void giveMoodDynamically_WhenHappyMessage_ShouldReturnHappy() throws ClassNotFoundException, MoodAnalyserException, IllegalAccessException, NoSuchFieldException, NoSuchMethodException, InstantiationException {
+    public void giveMoodDynamically_WhenHappyMessage_ShouldReturnHappy() throws MoodAnalyserException, NoSuchFieldException, NoSuchMethodException, InstantiationException {
         MoodAnalysisFactory s = new MoodAnalysisFactory();
-        Assert.assertEquals("Happy",s.reflector("I am in Happy Mood"));
+        Assert.assertEquals("Happy",s.reflector(Constant.Happy.getMessage()));
     }
 
     @Test
-    public void giveMoodDynamically_WhenMessageNull_ShouldThrowException() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, NoSuchFieldException, InstantiationException, MoodAnalyserException {
+    public void giveMoodDynamically_WhenMessageNull_ShouldThrowException() throws NoSuchFieldException {
         try {
             MoodAnalysisFactory s = new MoodAnalysisFactory();
             s.reflector(null);
         }catch (MoodAnalyserException e) {
-            Assert.assertEquals("Null Parameter Is Passed", e.getMessage());
+            Assert.assertEquals(Constant.Null.getMessage(), e.getMessage());
         }
     }
 
     @Test
-    public void giveMoodDynamically_WhenImproperMethod_ShouldThrowException() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, NoSuchFieldException, InstantiationException, MoodAnalyserException {
+    public void giveMoodDynamically_WhenImproperMethod_ShouldThrowException() throws NoSuchFieldException {
         try {
             MoodAnalysisFactory s = new MoodAnalysisFactory();
-            s.reflector("I Am In Happy Mood");
+            s.reflector(Constant.Happy.getMessage());
         }catch (MoodAnalyserException e) {
-            Assert.assertEquals("No Such Field Error", e.getMessage());
+            Assert.assertEquals(Constant.FieldNotFound.getMessage(), e.getMessage());
         }
     }
 }

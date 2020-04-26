@@ -33,8 +33,24 @@ public class MoodAnalysisFactory {
         return null;
     }
 
-    public static MoodAnalyser createMoodAnalyser(Class className, String path) throws MoodAnalyserException {
-        return createMoodAnalyser(className, path, null);
+    public static MoodAnalyser createMoodAnalyser(String path) throws MoodAnalyserException {
+        try {
+            Class<?> moodAnalyserClass = Class.forName(path);
+            Constructor<?> moodConstructor = moodAnalyserClass.getConstructor();
+            Object moodObj = moodConstructor.newInstance();
+            return (MoodAnalyser) moodObj;
+        } catch (ClassNotFoundException e) {
+            throw new MoodAnalyserException(ExceptionClass.ClassException.getException());
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            throw new MoodAnalyserException(ExceptionClass.MethodException.getException());
+        }
+        return null;
     }
 
     public static String Invoke(Class className, String mood) throws MoodAnalyserException {
